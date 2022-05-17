@@ -81,11 +81,12 @@ operators.forEach(operator => {
             display.textContent = answer + ' ' + operand + ' '
             num1 = answer;
             num2 = '';
+            decimalUsed = false;
             
         } else if (num1 !== '' && num2 === '') {
             operand = operator.textContent;
             display.textContent = num1 + ' ' + operand + ' '
-            
+            decimalUsed = false;
 
         }
     })
@@ -101,9 +102,15 @@ equalsBtn.addEventListener('click', () => {
 });
 
 dotBtn.addEventListener('click', () => {
-    if (decimalUsed === false) {
+    if (decimalUsed === false && operand !== '') {
+        num2 += dotBtn.textContent
+        display.textContent += dotBtn.textContent
         decimalUsed = true;
-    } 
+    } else if (decimalUsed === false && operand === ''){
+        num1 += dotBtn.textContent
+        display.textContent += dotBtn.textContent
+        decimalUsed = true
+    }
 })
 
 allClear.addEventListener('click', () => {

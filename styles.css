@@ -6,16 +6,30 @@ body {
     font-size: x-large;
 }
 
+
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:monospace;
+    font-size: 3rem;
+    margin-top: 100px;
+    color:rgb(93, 93, 93);
+    text-shadow: 3px 3px 3px rgb(0, 0, 0);
+}
+
 .calc-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 300px;
+    margin-top: 100px;
     border: 6px solid rgb(97, 97, 97);
     border-radius: 8px;
     background-color: rgb(100, 100, 100);
+    box-shadow: 2px 2px 3px black;
     
     
 }
@@ -57,3 +71,14 @@ body {
     margin: 2px;
     
 }
+
+button{
+    background-color: #b6dadd;
+    box-shadow: 2px 2px 3px black;
+
+}
+button:active {
+    background-color: #7498a7;
+    box-shadow: 0 2px rgb(10, 10, 10);
+    transform: translateY(2px);
+  }
