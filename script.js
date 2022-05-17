@@ -29,7 +29,9 @@ function multiply(num1, num2) {
 };
 
 function divide(num1, num2) {
-      
+    if (num2 === '0') {
+        return "Can't divide by 0!"
+    }
     return parseFloat(num1) / parseFloat(num2) 
 };
 
@@ -39,15 +41,15 @@ function modulo(num1, num2) {
 }
 
 function operate(operand, num1, num2) {
-    if (operand === "+") {  
+    if (operand.includes("+")) {  
         return add(num1, num2);
-    } else if (operand === "-") {
+    } else if (operand.includes("-")) {
         return subtract(num1, num2);
-    } else if (operand === "&divide") {
+    } else if (operand.includes("/")) {
         return divide(num1, num2);
-    } else if (operand === "X") {
+    } else if (operand.includes("x")) {
         return multiply(num1, num2);
-    } else if (operand === "%") {
+    } else if (operand.includes("%")) {
         return modulo(num1, num2)
     }
 };
@@ -62,15 +64,12 @@ nums.forEach(num => {
             display.textContent += num.textContent;
             console.log(`num2: ${num2}`);
             console.log(`num1: ${num1}`);
-            operand = '';
         } else if (operand === '') {
             num1 += num.textContent;
             display.textContent += num.textContent;
             console.log(`num1: ${num1}`);
         
     };
-    
-    
 });
 });
 
@@ -78,20 +77,26 @@ operators.forEach(operator => {
     operator.addEventListener('click', () => {
         if (num1 !== '' && num2 !== '') { 
             answer = operate(operand, parseFloat(num1), parseFloat(num2));
-            display.textContent = answer;
+            operand = operator.textContent;
+            display.textContent = answer + ' ' + operand + ' '
             num1 = answer;
             num2 = '';
-            operand = operator.textContent;
+            
         } else if (num1 !== '' && num2 === '') {
-            display.textContent = '';
             operand = operator.textContent;
+            display.textContent = num1 + ' ' + operand + ' '
+            
+
         }
     })
 });
  
 equalsBtn.addEventListener('click', () => {
-    if (num1 !== '' && num2 !== '') {
-        operate(operand, parseFloat(num1), parseFloat(num2))
+    console.log('clicked!');
+    if (num1 !== '' && num2 !== '' && operand !== '') {
+        answer = operate(operand, parseFloat(num1), parseFloat(num2));
+        console.log(answer)
+        display.textContent = answer;
     }
 });
 
@@ -108,14 +113,3 @@ allClear.addEventListener('click', () => {
     operand = '';
     decimalUsed = false;
 });
-
-
-/*function firstInput(input) {
-
-    num1 += input
-}
-
-function updateDisplay() {
-
-      return None
-};*/
